@@ -20,8 +20,8 @@ const getStudentDetails = (req, res) => {
 const UpdateStudent = (req, res) => {
 
     StudentModel.findOneAndUpdate(
-        {email: req.body.email}, 
-        {name: req.body.name, age: req.body.age},
+        {email: req.body.email},  // condition 
+        {name: req.body.name, age: req.body.age, departmentId: req.body.departmentId}, //update
         {new:true}).then(result => {
         res.send({result, message: "updated student details controller"})
 
@@ -52,4 +52,29 @@ const deleteStudentById = (req, res) => {
     })
 }
 
-export default {AddStudentDetails, getStudentDetails, UpdateStudent, getStudentById, deleteStudentById}
+const getStudentDepartment = (req, res) => {
+   StudentModel.aggregate([
+    {$match:{}},
+    {
+        $lookup: {
+            from: "departments",
+            localField: "departmentId",
+            foreignField: "_id",
+            as: "department_details"
+        }
+    },
+        { $unwind: { path: "$department_details", preserveNullAndEmptyArrays: true } },
+    {
+        $project: {
+            _id: 0,
+            name: 1,
+            email: 1,
+            department_details: 1
+        }
+    }
+])
+   
+   .then(result => res.send(result))
+}
+
+export default {AddStudentDetails, getStudentDetails, UpdateStudent, getStudentById, deleteStudentById, getStudentDepartment}

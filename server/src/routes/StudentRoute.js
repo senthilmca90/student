@@ -7,6 +7,6 @@ router.post('/add-student-details', StudentController.AddStudentDetails)
 router.put('/update-student-details', StudentController.UpdateStudent)
 router.get('/student-details/:id', StudentController.getStudentById)
 router.delete('/student-details/:id', StudentController.deleteStudentById)
-
+router.get('/get-user-depart', StudentController.getStudentDepartment)
 
 export default router;
