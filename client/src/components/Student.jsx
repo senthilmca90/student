@@ -10,6 +10,8 @@ export default function Student(props) {
     setState({name: event.target.value})
   }
 
+
+
   const onSubmitHandler = () => {
       props.catchChildHandler(state)
   }
