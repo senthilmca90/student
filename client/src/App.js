@@ -1,37 +1,33 @@
 import { useState } from 'react';
-import { NavLink } from "react-router-dom";
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+// import logo from './logo.svg';
+// import './App.css';
 import University from './components/University';
 import EsFeature from './components/EsFeature';
+import Header from './components/Header';
+import About from './components/About';
+import Contact from './components/Contact';
 //import and export
 // const University = require('./components/University')
 
 function App() {
-  let techName ="Tech team 1" //let, const, var
-  const[user, setUser] = useState({})
-  const CatchChildData = (values) => {
-      console.log(values)
-      setUser(values)
-  }
+
  
   return (
     <div className="App">
       <header className="App-header">
-      {/* <NavLink
-  to="/messages"
-  className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "active" : ""
-  }
->
-  Messages
-</NavLink> */}
-        <img src={logo} className="App-logo" alt="logo" />
-        <p sss="ss">
-          Edit to Tech team <code>src/App.js</code> and save to reload.
-        </p>
-        <EsFeature />
-        <a
+      <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<EsFeature />} />
+        <Route path="/aboutus" element={<About />} />
+        <Route path="/contactus" element={<Contact />} />
+      </Routes>
+      </BrowserRouter>
+
+        {/* <EsFeature /> */}
+        {/* <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
@@ -39,12 +35,9 @@ function App() {
         >
         
           Learn React 1 {user?.name}
-        </a>
+        </a> */}
         
-        <University name={techName}  className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer" catchChildHandler={CatchChildData} />
+        
       </header>
     </div>
   );

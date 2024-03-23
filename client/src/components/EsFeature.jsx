@@ -40,8 +40,8 @@ const arrowSample1 = (arg, arg1) => (arg1 > arg)?10+arg+arg1:10
 const result1= arrowSample(a, b) // function declaration
 const result2= arrowSample1(a, b) // function declaration
 
-console.log(result1)
-console.log(result2)
+// console.log(result1)
+// console.log(result2)
 
 // template string
 
@@ -108,18 +108,17 @@ delete newObj.email
 
 const firstObject = {name: "Raj"}
 const secondObject = {email: "ram@gmail.com"}
-const thirdObject = Object.assign(firstObject, secondObject, {isActive: true}) //first option
+const thirdObject = Object.assign(firstObject, secondObject, {isActive: true}) //first option --> clone object
 
 const fourthObj = {...firstObject, ...secondObject, isActive: true} // second option
 
 //6. destructure object
 const { isActive } = fourthObj
 const { nemail, college } = newObj
-console.log(isActive)
-console.log(fourthObj.isActive)
+// console.log(isActive)
+// console.log(fourthObj.isActive)
 
-console.log({thirdObject, fourthObj})
-//me
+// console.log({thirdObject, fourthObj})
 
 // 11 -> newObj --> ref --> dd //javascript value update
 // 13 --> newObj --> 14  --> //mema
@@ -129,13 +128,90 @@ const Obj = Object.assign({}, newObj)  // sigle
 const dd = structuredClone(Obj) // nested object
 dd.name ="Jayam"
 dd.college.dept.name = "MBA"
-console.log(newObj.college.dept.name)
-console.log(newObj.college.dept.class[1]) //array index
-console.log({newObj, dd})
-console.log(newObj.name)
-console.log(newObj.email)
+// console.log(newObj.college.dept.name)
+// console.log(newObj.college.dept.class[1]) //array index
+// console.log({newObj, dd})
+// console.log(newObj.name)
+// console.log(newObj.email)
 
-//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//7. Rest operator
+//spread 
+const iplObj = {teamName: "Chennai", players: 11}
+const state = {stateName: "Tamilnadu"}
+const final = {...iplObj, ...state}
+
+//rest operator
+function TeamFunc([first, second, ...allArg]){
+  console.log({first, second, allArg}) //
+  
+}
+
+function TeamFunc1(...arg){
+  console.log(arg) //
+}
+// const argObj = {stateName: "Tamilnadu",ss:'ss', ssg: 'sss'}
+const newArr = ['Chennai', 11, 'TamilNadu', iplObj]
+TeamFunc(newArr) // 
+TeamFunc1("Tamilnadu",'ss','sss') // 
+
+
+//8. array
+
+const norArr = ['a','b','c', 'd']
+const arrObj = [{name:'senthil'}, {name:'kannan'}, {name:"Raj"}]
+
+
+// 9. destructure array vs destructure object
+
+ const [firstIndex, secondIndex, ...remaindIndex] =  norArr
+ console.log({firstIndex, secondIndex, remaindIndex})
+
+//10 destructuring object
+
+const enObj = {name:'senthil', email:"eee", age: 12, classNam: 'MCA'}
+
+
+const { classNam, age } = enObj
+
+console.log(classNam)
+
+//11. Oject.key vs Object.values vs Object.entries
+console.log(Object.keys(enObj))
+const objKeys = Object.keys(enObj)
+objKeys.forEach(element => {
+    console.log({element})
+});
+
+console.log(enObj.classNam)
+console.log(Object.values(enObj))
+console.log(Object.entries(enObj)) //nested array
+
+       
+// for (let i = 0; i <= 10; i++) {
+//   const allStart = [];
+//   for (let j = 0; j <= i; j++) {
+//     let star = "*";
+//     allStart.push(star);
+//     if (j === i) {
+//       console.log(allStart.toString().replaceAll(",", ""));
+//       break;
+//     }
+//   }
+// }
 
   return (
     <div>EsFeature <br></br>

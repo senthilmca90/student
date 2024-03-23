@@ -20,7 +20,7 @@ console.log(state)
   return (
     <div>Student {props.name}
     <input type="text" name="email" onChange={onChangeHandler}/>
-    <button className='Tech' onClick={onSubmitHandler}> Submit </button>
+    <button className='btn btn-success' onClick={onSubmitHandler}> Submit </button>
     </div>
   )
 }
